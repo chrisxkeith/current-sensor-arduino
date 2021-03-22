@@ -1,4 +1,4 @@
-const String githubRepo("https://github.com/chrisxkeith/current-sensor-arduino");
+const String githubRepo("https://github.com/chrisxkeith/current-sensor-arduino`");
 const String githubHash("to be filled in after 'git push'");
 
 #include <U8g2lib.h>
@@ -13,7 +13,7 @@ const String githubHash("to be filled in after 'git push'");
 U8G2_SSD1327_EA_W128128_1_HW_I2C u8g2(U8G2_R0, U8X8_PIN_NONE);
 
 void u8g2_prepare(void) {
-  u8g2.setFont(u8g2_font_inb63_mn);
+  u8g2.setFont(u8g2_font_fur35_tf );
   u8g2.setFontRefHeightExtendedText();
   u8g2.setDrawColor(1);
   u8g2.setFontPosTop();
@@ -24,7 +24,7 @@ void drawUTF8(String val) {
   u8g2.firstPage();
   do {
       u8g2_prepare();
-      u8g2.setFont(u8g2_font_ncenB14_tr);
+      u8g2.setFont(u8g2_font_fur35_tf );
       u8g2.drawUTF8(0, 0, val.c_str());
   } while( u8g2.nextPage() );
 }
@@ -33,7 +33,7 @@ void drawInt(int val) {
   u8g2.firstPage();
   do {
       u8g2_prepare();
-      u8g2.drawUTF8(30, 10, String(val).c_str());
+      u8g2.drawUTF8(0, 0, String(val).c_str());
   } while( u8g2.nextPage() );
 }
 
@@ -102,9 +102,6 @@ void setup(void) {
   Serial.begin(57600);
   Serial.println("Started setup...");
   setup_OLED();
-  Serial.println(githubRepo);
-  Serial.println(githubHash);
-  drawUTF8(githubHash.substring(0,1));
   delay(3000);
   Serial.println("Finished setup...");
 }
